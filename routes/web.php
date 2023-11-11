@@ -19,15 +19,17 @@ use App\Models\User;
 */
 
 Route::get('/', function () {
-    return view('Home', [
-        "tittle" => "Home"
+    return view('home', [
+        "tittle" => "Home",
+        "active" => 'home'
     ]);
 });
 
 
-Route::get('/About', function () {
-    return view('About',[
+Route::get('/about', function () {
+    return view('about',[
         "tittle" => "About",
+        "active" =>'about',
         "name" =>"Raisa Isna Ainun",
         "email" =>"raisainun09@gmail.com",
         "img" =>"raisa.jpeg"
@@ -36,7 +38,7 @@ Route::get('/About', function () {
 
 
 
-Route::get('/Blog', [PostController::class, 'index']);
+Route::get('/posts', [PostController::class, 'index']);
 
 // halaman single post
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
@@ -45,22 +47,8 @@ Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 Route::get('/categories', function() {
     return view('categories', [
         'tittle' => 'Post Categories',
+        "active" => "categories",
         'categories' => Category::all()    
       ]);
 });
 
-
-route::get('/categories/{category:slug}', function(Category $category) {
-    return view('category', [
-      'tittle' => $category->name,
-      'posts' => $category->posts,
-      'category' => $category->name
-    ]);
-});
-
-route::get('/author/{user}',function(User $user){
-    return view('posts', [
-        'tittle' => 'user posts',
-        'posts' => $user->posts,   
-      ]);
-});
