@@ -8,7 +8,7 @@
       <div class="nav-item text-nowrap">
         <form action="/logout" method="post">
           @csrf
-          <button type="submit" class="nav-link px-3" >
+          <button type="submit" class="nav-link px-3">
             </i>Logout<span data-feather="log-out"></span></button>  
         </form>
       </div>
